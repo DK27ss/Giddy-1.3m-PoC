@@ -110,11 +110,25 @@ function selector used is `compound()` = `0xd41ff3d3` (not `deposit()` = `0x7fa4
 4.       → ecrecover(hash, sig) → authorized signer ✓
 5.       → Vault.swapRewardTokens(swapInfos)
 6.         → Vault context: LP.approve(attackerContract, type(uint256).max)  ← KEY STEP
+```
+
+<img width="1712" height="155" alt="image" src="https://github.com/user-attachments/assets/2fe66eeb-4ee4-4a2c-9f88-e3acba3da72b" />
+
+```
 7.         → Vault context: LP.balanceOf(vault) → records pre-swap balance
 8.         → Vault context: attackerContract.balanceOf(vault) → 0
 9.         → attackerContract.call(data)  ← fallback triggered
 10.          → fallback: _fakeBalances[vault] += 1  (toToken balance now 1)
 11.          → fallback: LP.transferFrom(vault, self, 1)  (fromToken balance decreased)
+```
+
+<img width="1669" height="237" alt="image" src="https://github.com/user-attachments/assets/12eaa5e0-9aa8-4306-8852-82a1bb3a78e8" />
+
+<img width="1674" height="232" alt="image" src="https://github.com/user-attachments/assets/ccda70d2-c5b6-44e4-8bd7-c0b11300c5ce" />
+
+<img width="1674" height="232" alt="image" src="https://github.com/user-attachments/assets/c1a7e7bf-4ec3-4b9b-846d-f08aa2111721" />
+
+```
 12.        → Vault context: LP.balanceOf(vault) → decreased ✓ (INVALID_SRC_BALANCE_CHANGE passes)
 13.        → Vault context: attackerContract.balanceOf(vault) → 1 > 0 ✓ (SWAP_NO_TOKENS_RECEIVED passes)
 14.   → compound() returns successfully
