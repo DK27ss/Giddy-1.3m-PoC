@@ -46,6 +46,8 @@ typeHash = keccak256("SwapInfo(bytes data)")
 typeHash = keccak256("SwapInfo(address fromToken,address aggregator,uint256 amount,address toToken,bytes data)")
 ```
 
+Exploit TX 
+
 by omitting `fromToken`, `aggregator`, `toToken`, and `amount` from the signed hash, any holder of a valid signature can redirect swaps to arbitrary contracts, effectively gaining unlimited ERC-20 approvals from the vault.
 
 EIP-712 signature validation hashes the `SwapInfo` struct using a `typeHash` that only includes `keccak256(data)`, the fields `fromToken`, `aggregator`, `toToken`, and `amount` are **not covered** by the signature
