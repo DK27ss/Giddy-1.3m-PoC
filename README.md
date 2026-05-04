@@ -182,3 +182,14 @@ typeHash = keccak256("SwapInfo(address fromToken,address aggregator,uint256 amou
 ```
 
 by omitting `fromToken`, `aggregator`, `toToken`, and `amount` from the signed hash, any holder of a valid signature can redirect swaps to arbitrary contracts, effectively gaining unlimited ERC-20 approvals from the vault.
+
+---
+
+>
+>Company : https://blockraider.xyz/
+>
+>Community : https://discord.gg/Vqqt7jyRr7
+>
+>Disclosure : https://t.me/blockraider_alerts_bot
+
+<img width="161" height="51" alt="blockraider" src="https://github.com/user-attachments/assets/dc86222a-b5fb-49e8-9a9d-350973b7521d" />
